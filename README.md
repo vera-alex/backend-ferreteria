@@ -22,5 +22,5 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
-$ npm install
+
 ```
