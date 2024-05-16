@@ -9,7 +9,7 @@
 
 ## Descripción
 
-Ferretería "Todo en Uno" fue fundada en 2015, ubicada en la calle Hernando Siles # .Comenzó como una pequeña tienda en el corazón de Ciudad del Este, con una modesta selección de herramientas básicas y suministros para la construcción.
+Ferretería "Todo en Uno" fue fundada en 2015, ubicada en la Av. Hernando Siles #818 .Comenzó como una pequeña tienda en el corazón de Ciudad del Este, con una modesta selección de herramientas básicas y suministros para la construcción.
 
 A lo largo de los años, la ferretería ha experimentado un crecimiento constante, expandiendo su inventario y atrayendo a una clientela fiel gracias a su compromiso con la calidad y el servicio al cliente. Hoy en día, es una de las principales tiendas de suministros de construcción en la región, conocida por su amplia selección de productos y su personal experto.
 
@@ -22,5 +22,21 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
+Persona(id, nombres, paterno, materno, direccion, telefono, email)
 
+Empleados(id, fecha_contratacion, rol, id_persona)
+
+Clientes(id, fecha_registro, id_persona)
+
+Usuario(id, usuario, clave, id_empleado)
+
+Proveedores(id, nombre, direccion, telefono, correo_electronico)
+
+Categoria(id, nombre, descripcion)
+
+Productos (id, nombre, marca, descripcion, tipo_unidad, precio, stock, id_proveedor, id_categoria)
+
+Venta(id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta)
+
+Detalle_Venta(id, cantidad, precio, subtotal, id_venta, id_producto)
 ```
