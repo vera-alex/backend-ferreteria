@@ -22,13 +22,13 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
-Persona(id, nombres, paterno, materno, direccion, telefono, email)
+Persona(id, nombres, paterno, materno, direccion, telefono)
 
-Empleados(id, fecha_contratacion, rol, id_persona)
+Empleados(id, fecha_contratacion, id_persona)
 
-Clientes(id, fecha_registro, id_persona)
+Clientes(id, id_persona)
 
-Usuario(id, usuario, clave, id_empleado)
+Usuario(id, usuario, clave, email, rol, id_empleado)
 
 Proveedores(id, nombre, direccion, telefono, correo_electronico)
 
