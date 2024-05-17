@@ -11,7 +11,7 @@ async function bootstrap() {
   app.enableCors();
 
   const config = new DocumentBuilder()
-    .setTitle('API Rest SIS257')
+    .setTitle('API Rest FERRETERIA')
     .setDescription('Backend de la Ferreteria "Todo en Uno"')
     .setVersion('1.0')
     .addTag('personas')

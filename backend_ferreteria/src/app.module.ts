@@ -17,6 +17,7 @@ import { PersonasModule } from './personas/personas.module';
       database: process.env.DB_NAME,
       entities: [__dirname + '**/*.entity.ts'],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     PersonasModule,
   ],
