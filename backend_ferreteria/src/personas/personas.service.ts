@@ -1,62 +1,58 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePersonaDto } from './dto/create-persona.dto';
 import { UpdatePersonaDto } from './dto/update-persona.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Persona } from './entities/persona.entity';
 import { Repository } from 'typeorm';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('personas')
 @Injectable()
 export class PersonasService {
   constructor(
-    @InjectRepository(Persona) private interpretesRepository: Repository<Persona>,
+    @InjectRepository(Persona) private personasRepository: Repository<Persona>,
   ) {}
 
   async create(createPersonaDto: CreatePersonaDto): Promise<Persona> {
-    const existe = await this.interpretesRepository.findOneBy({
+    const existe = await this.personasRepository.findOneBy({
       nombres: createPersonaDto.nombres.trim(),
       paterno: createPersonaDto.paterno.trim(),
+      materno: createPersonaDto.materno.trim(),
     });
 
     if (existe) {
-      throw new ConflictException('El intérprete ya existe');
+      throw new ConflictException('La persona ya existe');
     }
 
-    return this.interpretesRepository.save({
-      nombre: createPersonaDto.nombre.trim(),
-      nacionalidad: createPersonaDto.nacionalidad.trim(),
+    return this.personasRepository.save({
+      nombres: createPersonaDto.nombres.trim(),
+      paterno: createPersonaDto.paterno.trim(),
+      materno: createPersonaDto.materno.trim(),
+      direccion: createPersonaDto.direccion.trim(),
+      telefono: createPersonaDto.telefono.trim(),
     });
   }
 
   async findAll(): Promise<Persona[]> {
-    return this.interpretesRepository.find();
-  }
-
-  async findAllByGenero(idGenero: number): Promise<Persona[]> {
-    return this.interpretesRepository
-      .createQueryBuilder('interpretes')
-      .innerJoin('interpretes.albumes', 'albumes')
-      .innerJoin('albumes.canciones', 'canciones')
-      .innerJoin('canciones.genero', 'genero')
-      .where('genero.id = :idGenero', { idGenero })
-      .getMany();
+    return this.personasRepository.find();
   }
 
   async findOne(id: number): Promise<Persona> {
-    const interprete = await this.interpretesRepository.findOneBy({ id });
-    if (!interprete) {
-      throw new NotFoundException(`El intérprete ${id} no existe`);
+    const persona = await this.personasRepository.findOneBy({ id });
+    if (!persona) {
+      throw new NotFoundException(`La persona ${id} no existe`);
     }
-    return interprete;
+    return persona;
   }
 
   async update(id: number, updatePersonaDto: UpdatePersonaDto): Promise<Persona> {
-    const interprete = await this.findOne(id);
-    const interpreteUpdate = Object.assign(interprete, updatePersonaDto);
-    return this.interpretesRepository.save(interpreteUpdate);
+    const persona = await this.findOne(id);
+    const personaUpdate = Object.assign(persona, updatePersonaDto);
+    return this.personasRepository.save(personaUpdate);
   }
 
   async remove(id: number) {
-    const interprete = await this.findOne(id);
-    return this.interpretesRepository.delete(interprete.id);
+    const persona = await this.findOne(id);
+    return this.personasRepository.delete(persona.id);
   }
 }
