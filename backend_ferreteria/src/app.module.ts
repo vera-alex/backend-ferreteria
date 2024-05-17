@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PersonasModule } from './personas/personas.module';
-import { PersonasModule } from './personas/personas.module';
 
 @Module({
   imports: [
