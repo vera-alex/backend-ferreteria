@@ -24,7 +24,7 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ```bash
 Persona(id, nombres, paterno, materno, direccion, telefono)
 
-Empleados(id, fecha_contratacion, id_persona)
+Empleados(id, ci, fecha_contratacion, id_persona)
 
 Clientes(id, id_persona)
 
