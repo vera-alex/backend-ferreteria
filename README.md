@@ -7,6 +7,13 @@
 
   <p align="center" style="font-family: impact; font-size: 20px">Ferretería "Todo en Uno"</p>
 
+## Integrantes
+
+```bash
+1. Serrudo Bautista Brayan
+2. Vera Pinto Alex Jorge Abel
+```
+
 ## Descripción
 
 Ferretería "Todo en Uno" fue fundada en 2015, ubicada en la Av. Hernando Siles #818 .Comenzó como una pequeña tienda en el corazón de Ciudad del Este, con una modesta selección de herramientas básicas y suministros para la construcción.
@@ -22,21 +29,25 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
-Persona(id, nombres, paterno, materno, direccion, telefono)
+personas(id, ci, nombres, paterno, materno, direccion, telefono)
 
-Empleados(id, ci, fecha_contratacion, id_persona)
+empleados(id, fecha_contratacion, id_persona)
 
-Clientes(id, id_persona)
+clientes(id, id_persona)
 
-Usuario(id, usuario, clave, email, rol, id_empleado)
+usuarios(id, usuario, clave, email, rol, id_empleado)
 
-Proveedores(id, nombre, direccion, telefono, correo_electronico)
+proveedores(id, nombre, direccion, telefono, email)
 
-Categoria(id, nombre, descripcion)
+categorias(id, nombre, descripcion)
 
-Productos (id, nombre, marca, descripcion, tipo_unidad, precio, stock, id_proveedor, id_categoria)
+productos (id, codigo, nombre, marca, descripcion, tipo_unidad, precio, stock, id_categoria)
 
-Venta(id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta)
+ventas(id, monto_pago, monto_cambio, total, id_usuario, id_cliente)
 
-Detalle_Venta(id, cantidad, precio, subtotal, id_venta, id_producto)
+detalle_ventas(id, ,precio, cantidad, subtotal, id_venta, id_producto)
+
+compras(id, id_usuario, id_proveedor)
+
+detalle_compras(id, precio_compra, precio_venta, cantidad, subtotal, id_compra, id_producto)
 ```
