@@ -5,6 +5,9 @@ export class Persona {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column('varchar', { length: 15, nullable: false })
+  ci: string;
+
   @Column('varchar', { length: 50, nullable: false })
   nombres: string;
 

@@ -15,6 +15,7 @@ export class PersonasService {
 
   async create(createPersonaDto: CreatePersonaDto): Promise<Persona> {
     const existe = await this.personasRepository.findOneBy({
+      ci: createPersonaDto.ci.trim(),
       nombres: createPersonaDto.nombres.trim(),
       paterno: createPersonaDto.paterno.trim(),
       materno: createPersonaDto.materno.trim(),
@@ -25,6 +26,7 @@ export class PersonasService {
     }
 
     return this.personasRepository.save({
+      ci: createPersonaDto.ci.trim(),
       nombres: createPersonaDto.nombres.trim(),
       paterno: createPersonaDto.paterno.trim(),
       materno: createPersonaDto.materno.trim(),

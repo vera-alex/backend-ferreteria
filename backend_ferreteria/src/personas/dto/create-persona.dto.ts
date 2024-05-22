@@ -3,6 +3,13 @@ import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
 
 export class CreatePersonaDto {
   @ApiProperty()
+  @IsNotEmpty({ message: 'El campo CI no debe ser vacío' })
+  @IsString({ message: 'El campo CI debe ser de tipo cadena' })
+  @MaxLength(15, { message: 'El campo CI no debe ser mayor a 15 caracteres' })
+  @MinLength(7, { message: 'El campo CI no debe ser menor a 7 caracteres' })
+  readonly ci: string;
+
+  @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombres no debe ser vacío' })
   @IsString({ message: 'El campo nombres debe ser de tipo cadena' })
   @MaxLength(50, { message: 'El campo nombres no debe ser mayor a 50 caracteres' })
