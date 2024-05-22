@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('proveedores')
 export class Proveedor {
@@ -10,7 +16,7 @@ export class Proveedor {
 
   @Column('varchar', { length: 70, nullable: false })
   direccion: string;
-  
+
   @Column('varchar', { length: 15, nullable: false })
   telefono: string;
 
