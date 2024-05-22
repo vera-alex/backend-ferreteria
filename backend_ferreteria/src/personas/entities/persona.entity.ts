@@ -38,5 +38,5 @@ export class Persona {
   fechaModificacion: Date;
 
   @OneToOne(() => Empleado, empleado => empleado.personas)
-  empleados: Empleado;
+  empleados: Empleado[];
 }
