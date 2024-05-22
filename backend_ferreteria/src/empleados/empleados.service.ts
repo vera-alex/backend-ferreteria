@@ -5,6 +5,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Empleado } from './entities/empleado.entity';
 import { Repository } from 'typeorm';
+import { Persona } from 'src/personas/entities/persona.entity';
 
 @ApiTags('empleados')
 @Injectable()
@@ -13,12 +14,7 @@ export class EmpleadosService {
 
   async create(createEmpleadoDto: CreateEmpleadoDto): Promise<Empleado> {
     const existe = await this.empleadosRepository.findOneBy({
-      persona: {
-        ci: createEmpleadoDto.idPersona,
-        nombres: createEmpleadoDto.idPersona,
-        paterno: createEmpleadoDto.idPersona,
-        materno: createEmpleadoDto.idPersona,
-      },
+      personas: { id: createEmpleadoDto.idPersona },
     });
 
     if (existe) {
@@ -27,23 +23,19 @@ export class EmpleadosService {
 
     return this.empleadosRepository.save({
       fechaContrato: createEmpleadoDto.fechaContrato,
-      persona: {
-        ci: createEmpleadoDto.idPersona,
-        nombres: createEmpleadoDto.idPersona,
-        paterno: createEmpleadoDto.idPersona,
-        materno: createEmpleadoDto.idPersona,
-        direccion: createEmpleadoDto.idPersona,
-        telefono: createEmpleadoDto.idPersona,
-      },
+      personas: { id: createEmpleadoDto.idPersona },
     });
   }
 
   async findAll(): Promise<Empleado[]> {
-    return this.empleadosRepository.find({ relations: ['persona'] });
+    return this.empleadosRepository.find({ relations: ['personas'] });
   }
 
   async findOne(id: number): Promise<Empleado> {
-    const empleado = await this.empleadosRepository.findOneBy({ id });
+    const empleado = await this.empleadosRepository.findOne({ 
+      where: { id },
+      relations: ['personas']
+    });
     if (!empleado) {
       throw new NotFoundException(`El empleado ${id} no existe`);
     }
@@ -53,6 +45,7 @@ export class EmpleadosService {
   async update(id: number, updateEmpleadoDto: UpdateEmpleadoDto): Promise<Empleado> {
     const empleado = await this.findOne(id);
     const empleadoUpdate = Object.assign(empleado, updateEmpleadoDto);
+    empleadoUpdate.personas = { id: updateEmpleadoDto.idPersona } as Persona;
     return this.empleadosRepository.save(empleadoUpdate);
   }
 
