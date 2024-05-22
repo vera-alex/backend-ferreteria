@@ -5,7 +5,7 @@ export class Empleado {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn({ name: 'fecha_contrato' })
+  @CreateDateColumn({ name: 'fecha_contrato', nullable: false })
   fechaContrato: Date;
 
   @CreateDateColumn({ name: 'fecha_creacion' })
