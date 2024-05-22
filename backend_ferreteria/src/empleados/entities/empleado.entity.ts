@@ -17,13 +17,13 @@ export class Empleado {
   @Column('varchar', { length: 50, nullable: false })
   nombres: string;
 
-  @Column('varchar', { length: 20, nullable: false })
+  @Column('varchar', { length: 20, nullable: true })
   paterno: string;
 
-  @Column('varchar', { length: 20, nullable: false })
+  @Column('varchar', { length: 20, nullable: true })
   materno: string;
 
-  @Column('varchar', { length: 50, nullable: false })
+  @Column('varchar', { length: 50, nullable: true })
   email: string;
 
   @Column('varchar', { length: 70, nullable: false })
