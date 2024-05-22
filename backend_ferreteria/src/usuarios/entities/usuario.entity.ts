@@ -4,10 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Empleado } from 'src/empleados/entities/empleado.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -25,6 +28,10 @@ export class Usuario {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+
+  @OneToOne(() => Empleado, empleado => empleado.usuarios)
+  @JoinColumn({ name: 'id_empleado', referencedColumnName: 'id' })
+  empleados: Empleado;
 
   @BeforeInsert()
   @BeforeUpdate()
