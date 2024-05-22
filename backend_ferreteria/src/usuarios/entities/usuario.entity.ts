@@ -30,9 +30,8 @@ export class Usuario {
   fechaModificacion: Date;
 
   @OneToOne(() => Empleado, empleado => empleado.usuarios)
-  @JoinColumn({ name: 'id_empleado', referencedColumnName: 'id' })
-  empleados: Empleado;
-
+  empleados: Empleado[];
+  
   @BeforeInsert()
   @BeforeUpdate()
   async hashPassword() {

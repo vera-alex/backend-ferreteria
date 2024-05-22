@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -47,5 +48,6 @@ export class Empleado {
   fechaModificacion: Date;
 
   @OneToOne(() => Usuario, usuario => usuario.empleados)
-  usuarios: Usuario[];
+  @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
+  usuarios: Usuario;
 }
