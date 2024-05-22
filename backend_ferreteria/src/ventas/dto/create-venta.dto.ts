@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDateString, IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class CreateVentaDto {
   @ApiProperty()
@@ -18,4 +18,4 @@ export class CreateVentaDto {
   @MaxLength(7, { message: 'El campo total de venta no debe ser mayor a 7 caracteres' })
   @MinLength(1, { message: 'El campo total de venta no debe ser menor a 1 caracteres' })
   readonly totalVenta: string;
-  }
+}

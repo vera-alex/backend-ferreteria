@@ -9,9 +9,7 @@ import { ApiTags } from '@nestjs/swagger';
 @ApiTags('personas')
 @Injectable()
 export class PersonasService {
-  constructor(
-    @InjectRepository(Persona) private personasRepository: Repository<Persona>,
-  ) {}
+  constructor(@InjectRepository(Persona) private personasRepository: Repository<Persona>) {}
 
   async create(createPersonaDto: CreatePersonaDto): Promise<Persona> {
     const existe = await this.personasRepository.findOneBy({

@@ -9,9 +9,7 @@ import { Repository } from 'typeorm';
 @ApiTags('ventas')
 @Injectable()
 export class VentasService {
-  constructor(
-    @InjectRepository(Venta) private ventasRepository: Repository<Venta>,
-  ) {}
+  constructor(@InjectRepository(Venta) private ventasRepository: Repository<Venta>) {}
 
   async create(createVentaDto: CreateVentaDto): Promise<Venta> {
     const existe = await this.ventasRepository.findOneBy({
@@ -21,7 +19,7 @@ export class VentasService {
     if (existe) {
       throw new ConflictException('La venta ya existe');
     }
-//id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta
+    //id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta
     return this.ventasRepository.save({
       fechaVenta: createVentaDto.fechaVenta,
       horaVenta: createVentaDto.horaVenta,
