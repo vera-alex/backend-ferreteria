@@ -1,5 +1,12 @@
-import { Persona } from "src/personas/entities/persona.entity";
-import { CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Persona } from 'src/personas/entities/persona.entity';
+import {
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('empleados')
 export class Empleado {

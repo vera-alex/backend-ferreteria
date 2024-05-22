@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDateString, IsDefined, IsNotEmpty, IsNumber } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDateString, IsDefined, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateEmpleadoDto {
   @ApiProperty({ example: '2024-02-13' })
