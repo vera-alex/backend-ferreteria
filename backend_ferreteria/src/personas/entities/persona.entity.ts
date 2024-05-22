@@ -1,7 +1,9 @@
+import { Empleado } from 'src/empleados/entities/empleado.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -34,4 +36,7 @@ export class Persona {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+
+  @OneToOne(() => Empleado, empleado => empleado.personas)
+  empleados: Empleado;
 }
