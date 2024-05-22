@@ -1,26 +1,53 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProveedorDto } from './dto/create-proveedor.dto';
 import { UpdateProveedorDto } from './dto/update-proveedor.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Proveedor } from './entities/proveedor.entity';
+import { Repository } from 'typeorm';
 
+@ApiTags('proveedores')
 @Injectable()
 export class ProveedoresService {
-  create(createProveedoreDto: CreateProveedorDto) {
-    return 'This action adds a new proveedore';
+  constructor(@InjectRepository(Proveedor) private proveedorRepository: Repository<Proveedor>) {}
+
+  async create(createProveedorDto: CreateProveedorDto): Promise<Proveedor> {
+    const existe = await this.proveedorRepository.findOneBy({
+      nombre: createProveedorDto.nombre.trim(),
+    });
+
+    if (existe) {
+      throw new ConflictException('El proveedor ya existe');
+    }
+
+    return this.proveedorRepository.save({
+      nombre: createProveedorDto.nombre.trim(),
+      direccion: createProveedorDto.direccion.trim(),
+      telefono: createProveedorDto.telefono.trim(),
+      email: createProveedorDto.email.trim(),
+    });
   }
 
-  findAll() {
-    return `This action returns all proveedores`;
+  async findAll(): Promise<Proveedor[]> {
+    return this.proveedorRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} proveedore`;
+  async findOne(id: number): Promise<Proveedor> {
+    const proveedor = await this.proveedorRepository.findOneBy({ id });
+    if (!proveedor) {
+      throw new NotFoundException(`El proveedor ${id} no existe`);
+    }
+    return proveedor;
   }
 
-  update(id: number, updateProveedoreDto: UpdateProveedorDto) {
-    return `This action updates a #${id} proveedore`;
+  async update(id: number, updateProveedorDto: UpdateProveedorDto): Promise<Proveedor> {
+    const proveedor = await this.findOne(id);
+    const proveedorUpdate = Object.assign(proveedor, updateProveedorDto);
+    return this.proveedorRepository.save(proveedorUpdate);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} proveedore`;
+  async remove(id: number) {
+    const proveedor = await this.findOne(id);
+    return this.proveedorRepository.delete(proveedor.id);
   }
 }
