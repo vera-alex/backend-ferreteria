@@ -14,7 +14,7 @@ async function bootstrap() {
     .setTitle('API Rest FERRETERIA')
     .setDescription('Backend de la Ferreteria "Todo en Uno"')
     .setVersion('1.0')
-    .addTag('personas')
+    .addTag('ferreteria')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);
