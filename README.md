@@ -29,11 +29,11 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
-empleados(id, ci, nombres, paterno, materno, email, direccion, celular, rol, fecha_contrato)
+empleados(id, ci, nombres, paterno, materno, email, direccion, celular, rol, fecha_contrato, id_usuario)
 
 clientes(id, ci, nombres, paterno, materno, email, celular)
 
-usuarios(id, usuario, clave, id_empleado)
+usuarios(id, usuario, clave)
 
 proveedores(id, nombre, direccion, telefono, email)
 
