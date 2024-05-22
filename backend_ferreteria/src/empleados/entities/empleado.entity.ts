@@ -1,4 +1,5 @@
-import { CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Persona } from "src/personas/entities/persona.entity";
+import { CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('empleados')
 export class Empleado {
@@ -13,4 +14,8 @@ export class Empleado {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+
+  @OneToOne(() => Persona, persona => persona.empleados)
+  @JoinColumn({ name: 'id_persona', referencedColumnName: 'id' })
+  personas: Persona;
 }
