@@ -1,3 +1,4 @@
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { Empleado } from 'src/empleados/entities/empleado.entity';
 import {
   Column,
@@ -39,4 +40,7 @@ export class Persona {
 
   @OneToOne(() => Empleado, empleado => empleado.personas)
   empleados: Empleado[];
+
+  @OneToOne(() => Cliente, cliente => cliente.personas)
+  clientes: Empleado[];
 }
