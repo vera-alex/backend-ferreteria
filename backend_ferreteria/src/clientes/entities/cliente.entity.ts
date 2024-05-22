@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('clientes')
 export class Cliente {
@@ -19,10 +25,10 @@ export class Cliente {
 
   @Column('varchar', { length: 50, nullable: true })
   email: string;
-  
+
   @Column('varchar', { length: 15, nullable: false })
   celular: string;
-  
+
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
 
