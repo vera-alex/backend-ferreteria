@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonasModule } from './personas/personas.module';
-import { VentasModule } from './ventas/ventas.module';
-import { EmpleadosModule } from './empleados/empleados.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { ClientesModule } from './clientes/clientes.module';
+import { EmpleadosModule } from './empleados/empleados.module';
+import { VentasModule } from './ventas/ventas.module';
 
 @Module({
   imports: [
@@ -22,7 +21,6 @@ import { ClientesModule } from './clientes/clientes.module';
       synchronize: true,
       autoLoadEntities: true,
     }),
-    PersonasModule,
     VentasModule,
     EmpleadosModule,
     ClientesModule,
