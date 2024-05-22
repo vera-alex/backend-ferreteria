@@ -1,17 +1,39 @@
-import { Persona } from 'src/personas/entities/persona.entity';
 import {
+  Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  OneToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  UpdateDateColumn
 } from 'typeorm';
 
 @Entity('empleados')
 export class Empleado {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column('varchar', { length: 15, nullable: false })
+  ci: string;
+
+  @Column('varchar', { length: 50, nullable: false })
+  nombres: string;
+
+  @Column('varchar', { length: 20, nullable: false })
+  paterno: string;
+
+  @Column('varchar', { length: 20, nullable: false })
+  materno: string;
+
+  @Column('varchar', { length: 50, nullable: false })
+  email: string;
+
+  @Column('varchar', { length: 70, nullable: false })
+  direccion: string;
+
+  @Column('varchar', { length: 15, nullable: false })
+  celular: string;
+
+  @Column('varchar', { length: 15, nullable: false })
+  rol: string;
 
   @CreateDateColumn({ name: 'fecha_contrato', nullable: false })
   fechaContrato: Date;
@@ -21,8 +43,4 @@ export class Empleado {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
-
-  @OneToOne(() => Persona, persona => persona.empleados)
-  @JoinColumn({ name: 'id_persona', referencedColumnName: 'id' })
-  personas: Persona;
 }
