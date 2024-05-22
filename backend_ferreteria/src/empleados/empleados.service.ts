@@ -1,11 +1,10 @@
 import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { CreateEmpleadoDto } from './dto/create-empleado.dto';
-import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Empleado } from './entities/empleado.entity';
 import { Repository } from 'typeorm';
-import { Persona } from 'src/personas/entities/persona.entity';
+import { CreateEmpleadoDto } from './dto/create-empleado.dto';
+import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
+import { Empleado } from './entities/empleado.entity';
 
 @ApiTags('empleados')
 @Injectable()
@@ -14,7 +13,10 @@ export class EmpleadosService {
 
   async create(createEmpleadoDto: CreateEmpleadoDto): Promise<Empleado> {
     const existe = await this.empleadosRepository.findOneBy({
-      personas: { id: createEmpleadoDto.idPersona },
+      ci: createEmpleadoDto.ci.trim(),
+      nombres: createEmpleadoDto.nombres.trim(),
+      paterno: createEmpleadoDto.paterno.trim(),
+      materno: createEmpleadoDto.materno.trim(),
     });
 
     if (existe) {
@@ -22,20 +24,24 @@ export class EmpleadosService {
     }
 
     return this.empleadosRepository.save({
+      ci: createEmpleadoDto.ci.trim(),
+      nombres: createEmpleadoDto.nombres.trim(),
+      paterno: createEmpleadoDto.paterno.trim(),
+      materno: createEmpleadoDto.materno.trim(),
+      email: createEmpleadoDto.email.trim(),
+      direccion: createEmpleadoDto.direccion.trim(),
+      celular: createEmpleadoDto.celular.trim(),
+      rol: createEmpleadoDto.rol.trim(),
       fechaContrato: createEmpleadoDto.fechaContrato,
-      personas: { id: createEmpleadoDto.idPersona },
     });
   }
 
   async findAll(): Promise<Empleado[]> {
-    return this.empleadosRepository.find({ relations: ['personas'] });
+    return this.empleadosRepository.find();
   }
 
   async findOne(id: number): Promise<Empleado> {
-    const empleado = await this.empleadosRepository.findOne({
-      where: { id },
-      relations: ['personas'],
-    });
+    const empleado = await this.empleadosRepository.findOneBy({ id });
     if (!empleado) {
       throw new NotFoundException(`El empleado ${id} no existe`);
     }
@@ -45,7 +51,6 @@ export class EmpleadosService {
   async update(id: number, updateEmpleadoDto: UpdateEmpleadoDto): Promise<Empleado> {
     const empleado = await this.findOne(id);
     const empleadoUpdate = Object.assign(empleado, updateEmpleadoDto);
-    empleadoUpdate.personas = { id: updateEmpleadoDto.idPersona } as Persona;
     return this.empleadosRepository.save(empleadoUpdate);
   }
 
