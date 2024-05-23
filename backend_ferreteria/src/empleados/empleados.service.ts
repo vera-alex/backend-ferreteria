@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { CreateEmpleadoDto } from './dto/create-empleado.dto';
 import { UpdateEmpleadoDto } from './dto/update-empleado.dto';
 import { Empleado } from './entities/empleado.entity';
+import { Usuario } from 'src/usuarios/entities/usuario.entity';
 
 @ApiTags('empleados')
 @Injectable()
@@ -33,15 +34,19 @@ export class EmpleadosService {
       celular: createEmpleadoDto.celular.trim(),
       rol: createEmpleadoDto.rol.trim(),
       fechaContrato: createEmpleadoDto.fechaContrato,
+      usuarios: { id: createEmpleadoDto.idUsuario },
     });
   }
 
   async findAll(): Promise<Empleado[]> {
-    return this.empleadosRepository.find();
+    return this.empleadosRepository.find({ relations: ['usuarios'] });
   }
 
   async findOne(id: number): Promise<Empleado> {
-    const empleado = await this.empleadosRepository.findOneBy({ id });
+    const empleado = await this.empleadosRepository.findOne({
+      where: { id },
+      relations: ['usuarios'],
+    });
     if (!empleado) {
       throw new NotFoundException(`El empleado ${id} no existe`);
     }
@@ -51,6 +56,7 @@ export class EmpleadosService {
   async update(id: number, updateEmpleadoDto: UpdateEmpleadoDto): Promise<Empleado> {
     const empleado = await this.findOne(id);
     const empleadoUpdate = Object.assign(empleado, updateEmpleadoDto);
+    empleadoUpdate.usuarios = { id: updateEmpleadoDto.idUsuario } as Usuario;
     return this.empleadosRepository.save(empleadoUpdate);
   }
 
