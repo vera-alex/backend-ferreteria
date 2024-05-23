@@ -31,7 +31,7 @@ export class Usuario {
 
   @OneToOne(() => Empleado, empleado => empleado.usuarios)
   empleados: Empleado[];
-  
+
   @BeforeInsert()
   @BeforeUpdate()
   async hashPassword() {
