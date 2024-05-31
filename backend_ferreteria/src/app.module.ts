@@ -12,6 +12,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { ProductosModule } from './productos/productos.module';
 import { ComprasModule } from './compras/compras.module';
 import { DetalleventasModule } from './detalleventas/detalleventas.module';
+import { DetallecomprasModule } from './detallecompras/detallecompras.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { DetalleventasModule } from './detalleventas/detalleventas.module';
     ProductosModule,
     ComprasModule,
     DetalleventasModule,
+    DetallecomprasModule,
   ],
   controllers: [AppController],
   providers: [AppService],

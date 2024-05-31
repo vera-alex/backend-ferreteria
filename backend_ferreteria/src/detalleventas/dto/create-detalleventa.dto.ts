@@ -1,8 +1,7 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDefined, IsNotEmpty, IsNumber, MaxLength } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsDefined, IsNotEmpty, IsNumber, MaxLength } from 'class-validator';
 
 export class CreateDetalleventaDto {
-
   @IsNotEmpty({ message: 'El campo precio no debe ser vacío' })
   @IsNumber({}, { message: 'El campo precio debe ser de tipo numero' })
   @MaxLength(10, { message: 'El campo precio no debe ser mayor a 10 number' })
@@ -27,5 +26,4 @@ export class CreateDetalleventaDto {
   @IsDefined({ message: 'El campo idProducto debe estar definido' })
   @IsNumber({}, { message: 'El campo idProducto debe ser de tipo numérico' })
   readonly idProducto: number;
-  
 }

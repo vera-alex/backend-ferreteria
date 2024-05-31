@@ -1,10 +1,17 @@
-import { Producto } from "src/productos/entities/producto.entity";
-import { Venta } from "src/ventas/entities/venta.entity";
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Producto } from 'src/productos/entities/producto.entity';
+import { Venta } from 'src/ventas/entities/venta.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('detalleventas')
 export class Detalleventa {
-
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,7 +31,6 @@ export class Detalleventa {
   @ManyToOne(() => Producto, producto => producto.detalleventas)
   @JoinColumn({ name: 'id_producto', referencedColumnName: 'id' })
   productos: Producto;
-
 
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
