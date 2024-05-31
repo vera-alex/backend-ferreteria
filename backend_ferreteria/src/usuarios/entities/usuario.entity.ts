@@ -13,6 +13,7 @@ import {
 import * as bcrypt from 'bcrypt';
 import { Empleado } from 'src/empleados/entities/empleado.entity';
 import { Venta } from 'src/ventas/entities/venta.entity';
+import { Compra } from 'src/compras/entities/compra.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -36,6 +37,9 @@ export class Usuario {
 
   @OneToMany(() => Venta, venta => venta.usuarios)
   ventas: Venta[];
+
+  @OneToMany(() => Compra, compra => compra.usuarios)
+  compras: Compra[];
 
   @BeforeInsert()
   @BeforeUpdate()
