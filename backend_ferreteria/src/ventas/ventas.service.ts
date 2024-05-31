@@ -21,9 +21,9 @@ export class VentasService {
     }
     //id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta
     return this.ventasRepository.save({
+      totalVenta: createVentaDto.totalVenta,
       fechaVenta: createVentaDto.fechaVenta,
       horaVenta: createVentaDto.horaVenta,
-      totalVenta: createVentaDto.totalVenta,
     });
   }
 

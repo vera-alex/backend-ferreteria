@@ -5,12 +5,14 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Empleado } from 'src/empleados/entities/empleado.entity';
+import { Venta } from 'src/ventas/entities/venta.entity';
 
 @Entity('usuarios')
 export class Usuario {
@@ -31,6 +33,9 @@ export class Usuario {
 
   @OneToOne(() => Empleado, empleado => empleado.usuarios)
   empleados: Empleado[];
+
+  @OneToMany(() => Venta, venta => venta.usuarios)
+  ventas: Venta[];
 
   @BeforeInsert()
   @BeforeUpdate()

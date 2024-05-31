@@ -1,16 +1,28 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity('personas')
+@Entity('ventas')
 export class Venta {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ nullable: true })
+  totalVenta: number;
+
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaVenta: Date;
 
-  @CreateDateColumn({ name: 'fecha_creacion' })
+  @CreateDateColumn({ name: 'hora' })
   horaVenta: Date;
 
-  @Column('varchar', { length: 7, nullable: true })
-  totalVenta: string;
+  @ManyToOne(() => Usuario, usuario => usuario.ventas)
+  @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
+  usuarios: Usuario;
 }
