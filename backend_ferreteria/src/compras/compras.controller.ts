@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ComprasService } from './compras.service';
 import { CreateCompraDto } from './dto/create-compra.dto';
 import { UpdateCompraDto } from './dto/update-compra.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('compras')
 @Controller('compras')
 export class ComprasController {
   constructor(private readonly comprasService: ComprasService) {}
