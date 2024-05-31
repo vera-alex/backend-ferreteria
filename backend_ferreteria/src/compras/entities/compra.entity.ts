@@ -1,9 +1,9 @@
-import { Proveedor } from "src/proveedores/entities/proveedor.entity";
-import { Usuario } from "src/usuarios/entities/usuario.entity";
-import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Proveedor } from 'src/proveedores/entities/proveedor.entity';
+import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import { Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('compras')
-export class Compra {  
+export class Compra {
   @PrimaryGeneratedColumn()
   id: number;
 

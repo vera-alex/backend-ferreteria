@@ -30,8 +30,7 @@ export class Proveedor {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
-  
+
   @OneToMany(() => Compra, compra => compra.proveedor)
   compras: Compra[];
-
 }
