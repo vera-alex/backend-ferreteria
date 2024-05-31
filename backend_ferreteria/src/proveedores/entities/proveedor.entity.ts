@@ -1,7 +1,9 @@
+import { Compra } from 'src/compras/entities/compra.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -28,4 +30,8 @@ export class Proveedor {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+  
+  @OneToMany(() => Compra, compra => compra.proveedor)
+  compras: Compra[];
+
 }
