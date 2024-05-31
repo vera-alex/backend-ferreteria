@@ -1,3 +1,4 @@
+import { Detalleventa } from 'src/detalleventas/entities/detalleventa.entity';
 import { Usuario } from 'src/usuarios/entities/usuario.entity';
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -25,4 +27,7 @@ export class Venta {
   @ManyToOne(() => Usuario, usuario => usuario.ventas)
   @JoinColumn({ name: 'id_usuario', referencedColumnName: 'id' })
   usuarios: Usuario;
+
+  @OneToMany(() => Detalleventa, detalleventa => detalleventa.ventas)
+  detalleventas: Detalleventa[];
 }
