@@ -1,4 +1,5 @@
 import { Categoria } from 'src/categorias/entities/categoria.entity';
+import { Detallecompra } from 'src/detallecompras/entities/detallecompra.entity';
 import { Detalleventa } from 'src/detalleventas/entities/detalleventa.entity';
 import {
   Column,
@@ -46,4 +47,7 @@ export class Producto {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+
+  @OneToMany(() => Detallecompra, detallecompra => detallecompra.producto)
+  detallecompra: Detallecompra[];
 }
