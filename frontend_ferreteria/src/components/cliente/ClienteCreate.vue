@@ -71,7 +71,7 @@ function goBack() {
           />
           <label for="nombres">Nombres</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input
             type="text"
             class="form-control"
@@ -81,7 +81,7 @@ function goBack() {
           />
           <label for="paterno">Apellido Paterno</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input
             type="text"
             class="form-control"
@@ -91,7 +91,7 @@ function goBack() {
           />
           <label for="materno">Apellido Materno</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
           <input type="text" class="form-control" v-model="email" placeholder="Email" required />
           <label for="email">Email</label>
         </div>
