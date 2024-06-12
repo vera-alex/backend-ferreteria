@@ -1,6 +1,6 @@
 export interface Proveedor {
   id: number
-  nit: string
+  nit: number
   razonSocial: string
   direccion: string
   telefono: string

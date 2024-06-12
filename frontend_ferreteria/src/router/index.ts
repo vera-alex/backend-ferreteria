@@ -23,6 +23,19 @@ const router = createRouter({
       ]
     },
     {
+      path: '/proveedores',
+      name: 'proveedores',
+      component: () => import('../views/ProveedorView.vue'),
+      children: [
+        { path: '', component: () => import('../components/proveedor/ProveedorList.vue') },
+        { path: 'crear', component: () => import('../components/proveedor/ProveedorCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/proveedor/ProveedorEdit.vue')
+        }
+      ]
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
