@@ -13,7 +13,8 @@ export class ProveedoresService {
 
   async create(createProveedorDto: CreateProveedorDto): Promise<Proveedor> {
     const existe = await this.proveedorRepository.findOneBy({
-      nombre: createProveedorDto.nombre.trim(),
+      nit: createProveedorDto.nit,
+      razonSocial: createProveedorDto.razonSocial.trim(),
     });
 
     if (existe) {
@@ -21,7 +22,8 @@ export class ProveedoresService {
     }
 
     return this.proveedorRepository.save({
-      nombre: createProveedorDto.nombre.trim(),
+      nit: createProveedorDto.nit,
+      razonSocial: createProveedorDto.razonSocial.trim(),
       direccion: createProveedorDto.direccion.trim(),
       telefono: createProveedorDto.telefono.trim(),
       email: createProveedorDto.email.trim(),

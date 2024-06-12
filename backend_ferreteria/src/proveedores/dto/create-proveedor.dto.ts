@@ -1,13 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from 'class-validator';
 
 export class CreateProveedorDto {
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo nit no debe ser vacío' })
+  @IsNumber({}, { message: 'El campo nit debe ser de tipo numérico' })
+  @MinLength(10, { message: 'El campo nit no debe ser menor a 10 caracteres' })
+  readonly nit: number;
+  
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombre no debe ser vacío' })
   @IsString({ message: 'El campo nombre debe ser de tipo cadena' })
   @MaxLength(50, { message: 'El campo nombre no debe ser mayor a 50 caracteres' })
   @MinLength(3, { message: 'El campo nombre no debe ser menor a 3 caracteres' })
-  readonly nombre: string;
+  readonly razonSocial: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo direccion no debe ser vacío' })
