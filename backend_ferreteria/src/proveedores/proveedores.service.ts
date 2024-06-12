@@ -13,7 +13,7 @@ export class ProveedoresService {
 
   async create(createProveedorDto: CreateProveedorDto): Promise<Proveedor> {
     const existe = await this.proveedorRepository.findOneBy({
-      nit: createProveedorDto.nit,
+      nit: createProveedorDto.nit.trim(),
       razonSocial: createProveedorDto.razonSocial.trim(),
     });
 
@@ -22,7 +22,7 @@ export class ProveedoresService {
     }
 
     return this.proveedorRepository.save({
-      nit: createProveedorDto.nit,
+      nit: createProveedorDto.nit.trim(),
       razonSocial: createProveedorDto.razonSocial.trim(),
       direccion: createProveedorDto.direccion.trim(),
       telefono: createProveedorDto.telefono.trim(),

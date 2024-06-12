@@ -4,9 +4,10 @@ import { IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from 'c
 export class CreateProveedorDto {
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nit no debe ser vacío' })
-  @IsNumber({}, { message: 'El campo nit debe ser de tipo numérico' })
-  @MinLength(10, { message: 'El campo nit no debe ser menor a 10 caracteres' })
-  readonly nit: number;
+  @IsString({ message: 'El campo nit debe ser de tipo cadena' })
+  @MaxLength(25, { message: 'El campo nit no debe ser mayor a 25 caracteres' })
+  @MinLength(5,{ message: 'Elcampo nit no debe ser menor a 5 caracteres' })
+  readonly nit: string;
   
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombre no debe ser vacío' })
@@ -26,7 +27,7 @@ export class CreateProveedorDto {
   @IsNotEmpty({ message: 'El campo telefono no debe ser vacío' })
   @IsString({ message: 'El campo telefono debe ser de tipo cadena' })
   @MaxLength(15, { message: 'El campo telefono no debe ser mayor a 15 caracteres' })
-  @MinLength(8, { message: 'El campo telefono no debe ser menor a 8 caracteres' })
+  @MinLength(5, { message: 'El campo telefono no debe ser menor a 5 caracteres' })
   readonly telefono: string;
 
   @ApiProperty()

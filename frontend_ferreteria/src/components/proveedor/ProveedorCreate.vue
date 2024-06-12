@@ -17,7 +17,7 @@ const email = ref('')
 async function crearProveedor() {
   await http
     .post(ENDPOINT, {
-      nit: parseInt(nit.value),
+      nit: nit.value,
       razonSocial: razonSocial.value,
       direccion: direccion.value,
       telefono: telefono.value,

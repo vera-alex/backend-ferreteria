@@ -18,7 +18,7 @@ const id = router.currentRoute.value.params['id']
 async function editarProveedor() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
-      nit: parseInt(nit.value),
+      nit: nit.value,
       razonSocial: razonSocial.value,
       direccion: direccion.value,
       telefono: telefono.value,

@@ -13,8 +13,8 @@ export class Proveedor {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('int', {nullable: false})
-  nit: number
+  @Column('varchar', { length: 25, nullable: false })
+  nit: string
 
   @Column('varchar', { length: 50, nullable: false, name: 'razon_social' })
   razonSocial: string;
