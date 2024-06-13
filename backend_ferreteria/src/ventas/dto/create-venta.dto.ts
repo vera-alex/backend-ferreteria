@@ -27,7 +27,12 @@ export class CreateVentaDto {
   readonly horaVenta: Date;
 
   @ApiProperty()
-  @IsDefined({ message: 'El campo idEmpleado debe estar definido' })
-  @IsNumber({}, { message: 'El campo idEmpleado debe ser de tipo numérico' })
+  @IsDefined({ message: 'El campo idUsuario debe estar definido' })
+  @IsNumber({}, { message: 'El campo idUsuario debe ser de tipo numérico' })
   readonly idUsuario: number;
+
+  @ApiProperty()
+  @IsDefined({ message: 'El campo idCliente debe estar definido' })
+  @IsNumber({}, { message: 'El campo idCliente debe ser de tipo numérico' })
+  readonly idCliente: number;
 }

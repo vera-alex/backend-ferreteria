@@ -5,6 +5,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Producto } from './entities/producto.entity';
 import { Repository } from 'typeorm';
+import { Categoria } from 'src/categorias/entities/categoria.entity';
 
 @ApiTags('productos')
 @Injectable()
@@ -28,15 +29,19 @@ export class ProductosService {
       unidadMedida: createProductoDto.unidadMedida.trim(),
       precio: createProductoDto.precio,
       stock: createProductoDto.stock,
+      categorias: { id: createProductoDto.idCategoria },
     });
   }
 
   async findAll(): Promise<Producto[]> {
-    return this.productosRepository.find();
+    return this.productosRepository.find({ relations: ['categorias'] });
   }
 
   async findOne(id: number): Promise<Producto> {
-    const producto = await this.productosRepository.findOneBy({ id });
+    const producto = await this.productosRepository.findOne({
+      where: { id },
+      relations: ['categorias'],
+    });
     if (!producto) {
       throw new NotFoundException(`El producto ${id} no existe`);
     }
@@ -46,6 +51,7 @@ export class ProductosService {
   async update(id: number, updateProductoDto: UpdateProductoDto): Promise<Producto> {
     const producto = await this.findOne(id);
     const productoUpdate = Object.assign(producto, updateProductoDto);
+    productoUpdate.categorias = { id: updateProductoDto.idCategoria } as Categoria;
     return this.productosRepository.save(productoUpdate);
   }
 

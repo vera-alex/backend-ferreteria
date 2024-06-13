@@ -5,6 +5,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { Venta } from './entities/venta.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Usuario } from 'src/usuarios/entities/usuario.entity';
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 
 @ApiTags('ventas')
 @Injectable()
@@ -24,15 +26,20 @@ export class VentasService {
       totalVenta: createVentaDto.totalVenta,
       fechaVenta: createVentaDto.fechaVenta,
       horaVenta: createVentaDto.horaVenta,
+      usuarios: { id: createVentaDto.idUsuario },
+      clientes: { id: createVentaDto.idCliente },
     });
   }
 
   async findAll(): Promise<Venta[]> {
-    return this.ventasRepository.find();
+    return this.ventasRepository.find({ relations: ['usuarios', 'clientes'] });
   }
 
   async findOne(id: number): Promise<Venta> {
-    const venta = await this.ventasRepository.findOneBy({ id });
+    const venta = await this.ventasRepository.findOne({
+      where: { id },
+      relations: ['usuarios', 'clientes'],
+    });
     if (!venta) {
       throw new NotFoundException(`La venta ${id} no existe`);
     }
@@ -42,6 +49,8 @@ export class VentasService {
   async update(id: number, updateVentaDto: UpdateVentaDto): Promise<Venta> {
     const venta = await this.findOne(id);
     const ventaUpdate = Object.assign(venta, updateVentaDto);
+    ventaUpdate.usuarios = { id: updateVentaDto.idUsuario } as Usuario;
+    ventaUpdate.clientes = { id: updateVentaDto.idCliente } as Cliente;
     return this.ventasRepository.save(ventaUpdate);
   }
 

@@ -36,7 +36,7 @@ export class CreateProductoDto {
   readonly stock: number;
 
   @ApiProperty()
-  @IsDefined({ message: 'El campo idEmpleado debe estar definido' })
-  @IsNumber({}, { message: 'El campo idEmpleado debe ser de tipo numérico' })
+  @IsDefined({ message: 'El campo idCategoria debe estar definido' })
+  @IsNumber({}, { message: 'El campo idCategoria debe ser de tipo numérico' })
   readonly idCategoria: number;
 }
