@@ -9,14 +9,14 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-var usuarioes = ref<Usuario[]>([])
+var usuarios = ref<Usuario[]>([])
 
 async function getUsuarios() {
-  usuarioes.value = await http.get(ENDPOINT).then((response) => response.data)
+  usuarios.value = await http.get(ENDPOINT).then((response) => response.data)
 }
 
 function toEdit(id: number) {
-  router.push(`/usuarioes/editar/${id}`)
+  router.push(`/usuarios/editar/${id}`)
 }
 
 async function toDelete(id: number) {
@@ -43,7 +43,7 @@ onMounted(() => {
     <div class="row">
       <h2>Lista de Usuarios</h2>
       <div class="col-12">
-        <RouterLink to="/usuarioes/crear"
+        <RouterLink to="/usuarios/crear"
           ><font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo</RouterLink
         >
       </div>
@@ -60,7 +60,7 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(usuario, index) in usuarioes.values()" :key="usuario.id">
+          <tr v-for="(usuario, index) in usuarios.values()" :key="usuario.id">
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ usuario.usuario }}</td>
             <td>{{ usuario.rol }}</td>

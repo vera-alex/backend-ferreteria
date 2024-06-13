@@ -14,6 +14,12 @@ const router = createRouter({
     },
     { path: '/login', name: 'login', component: LoginView },
     {
+      path: '/ventas',
+      name: 'ventas',
+      component: () => import('../views/VentaView.vue'),
+      children: [{ path: '', component: () => import('../components/venta/VentaForm.vue') }]
+    },
+    {
       path: '/clientes',
       name: 'clientes',
       component: () => import('../views/ClienteView.vue'),
@@ -40,16 +46,16 @@ const router = createRouter({
       ]
     },
     {
+      path: '/empleados',
+      name: 'empleados',
+      component: () => import('../views/EmpleadoView.vue'),
+      children: [{ path: '', component: () => import('../components/empleado/EmpleadoList.vue') }]
+    },
+    {
       path: '/usuarios',
       name: 'usuarios',
       component: () => import('@/views/UsuarioView.vue'),
       children: [{ path: '', component: () => import('../components/usuario/UsuarioList.vue') }]
-    },
-    {
-      path: '/ventas',
-      name: 'ventas',
-      component: () => import('../views/VentaView.vue'),
-      children: [{ path: '', component: () => import('../components/venta/VentaForm.vue') }]
     },
     {
       path: '/about',
