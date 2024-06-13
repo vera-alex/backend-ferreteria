@@ -22,7 +22,6 @@ export class CategoriasService {
 
     return this.categoriasRepository.save({
       nombre: createCategoriaDto.nombre.trim(),
-      descripcion: createCategoriaDto.descripcion.trim(),
     });
   }
 

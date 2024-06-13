@@ -29,23 +29,23 @@ Para el inventario, se lleva un registro manual de los productos entrantes y sal
 ## Entidades
 
 ```bash
-empleados(id, ci, nombres, paterno, materno, email, direccion, celular, rol, fecha_contrato, id_usuario)
+empleados(id, ci, nombres, paterno, materno, email, direccion, celular, fecha_contrato, id_usuario)
 
 clientes(id, ci, nombres, paterno, materno, email, celular)
 
-usuarios(id, usuario, clave)
+usuarios(id, usuario, clave, rol)
 
 proveedores(id, nit, razon_social, direccion, telefono, email)
 
-categorias(id, nombre, descripcion)
+categorias(id, nombre)
 
-productos (id, codigo, nombre, marca, descripcion, tipo_unidad, precio, stock, id_categoria)
+productos (id, codigo, nombre, marca, tipo_unidad, precio, stock, id_categoria)
 
-ventas(id, monto_pago, monto_cambio, total, id_usuario, id_cliente)
+ventas(id, total, id_usuario, id_cliente)
 
 detalle_ventas(id, ,precio, cantidad, subtotal, id_venta, id_producto)
 
-compras(id, id_usuario, id_proveedor)
+compras(id, total, id_usuario, id_proveedor)
 
 detalle_compras(id, precio_compra, precio_venta, cantidad, subtotal, id_compra, id_producto)
 ```
