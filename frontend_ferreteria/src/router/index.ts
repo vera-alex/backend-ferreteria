@@ -14,6 +14,18 @@ const router = createRouter({
     },
     { path: '/login', name: 'login', component: LoginView },
     {
+      path: '/categorias',
+      name: 'categorias',
+      component: () => import('../views/CategoriaView.vue'),
+      children: [{ path: '', component: () => import('../components/categoria/CategoriaList.vue') }]
+    },
+    {
+      path: '/productos',
+      name: 'productos',
+      component: () => import('../views/ProductoView.vue'),
+      children: [{ path: '', component: () => import('../components/producto/ProductoList.vue') }]
+    },
+    {
       path: '/ventas',
       name: 'ventas',
       component: () => import('../views/VentaView.vue'),
