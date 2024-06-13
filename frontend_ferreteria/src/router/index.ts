@@ -40,6 +40,12 @@ const router = createRouter({
       ]
     },
     {
+      path: '/ventas',
+      name: 'ventas',
+      component: () => import('../views/VentaView.vue'),
+      children: [{ path: '', component: () => import('../components/venta/VentaForm.vue') }]
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
