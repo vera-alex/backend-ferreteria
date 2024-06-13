@@ -8,4 +8,11 @@ export class CreateUsuarioDto {
   @MaxLength(12, { message: 'El campo usario no debe ser mayor a 12 caracteres' })
   @MinLength(4, { message: 'El campo usario no debe ser menor a 4 caracteres' })
   readonly usuario: string;
+  
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo rol no debe ser vacío' })
+  @IsString({ message: 'El campo rol debe tener el formato correcto' })
+  @MaxLength(15, { message: 'El campo rol no debe ser mayor a 15 caracteres' })
+  @MinLength(3, { message: 'El campo rol no debe ser menor a 3 caracteres' })
+  readonly rol: string;
 }

@@ -13,6 +13,7 @@ import { ProductosModule } from './productos/productos.module';
 import { ComprasModule } from './compras/compras.module';
 import { DetalleventasModule } from './detalleventas/detalleventas.module';
 import { DetallecomprasModule } from './detallecompras/detallecompras.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { DetallecomprasModule } from './detallecompras/detallecompras.module';
     ComprasModule,
     DetalleventasModule,
     DetallecomprasModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

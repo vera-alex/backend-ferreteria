@@ -32,7 +32,6 @@ export class EmpleadosService {
       email: createEmpleadoDto.email.trim(),
       direccion: createEmpleadoDto.direccion.trim(),
       celular: createEmpleadoDto.celular.trim(),
-      rol: createEmpleadoDto.rol.trim(),
       fechaContrato: createEmpleadoDto.fechaContrato,
       usuarios: { id: createEmpleadoDto.idUsuario },
     });

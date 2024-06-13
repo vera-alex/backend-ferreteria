@@ -15,6 +15,7 @@ async function bootstrap() {
     .setDescription('Backend de la Ferreteria "Todo en Uno"')
     .setVersion('1.0')
     .addTag('ferreteria')
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);

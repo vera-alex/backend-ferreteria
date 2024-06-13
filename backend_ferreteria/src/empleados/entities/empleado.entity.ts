@@ -35,9 +35,6 @@ export class Empleado {
   @Column('varchar', { length: 15, nullable: false })
   celular: string;
 
-  @Column('varchar', { length: 15, nullable: false })
-  rol: string;
-
   @CreateDateColumn({ name: 'fecha_contrato', nullable: false })
   fechaContrato: Date;
 

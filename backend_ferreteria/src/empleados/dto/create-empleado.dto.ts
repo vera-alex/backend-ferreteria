@@ -57,13 +57,6 @@ export class CreateEmpleadoDto {
   @MinLength(8, { message: 'El campo celular no debe ser menor a 8 caracteres' })
   readonly celular: string;
 
-  @ApiProperty()
-  @IsNotEmpty({ message: 'El campo rol no debe ser vacío' })
-  @IsString({ message: 'El campo rol debe tener el formato correcto' })
-  @MaxLength(15, { message: 'El campo rol no debe ser mayor a 15 caracteres' })
-  @MinLength(3, { message: 'El campo rol no debe ser menor a 3 caracteres' })
-  readonly rol: string;
-
   @ApiProperty({ example: '2024-02-13' })
   @IsNotEmpty({ message: 'El campo fechaContrato no debe ser vacío' })
   @IsDateString({}, { message: 'El campo fechaContrato debe ser de tipo fecha' })
