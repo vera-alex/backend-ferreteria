@@ -1,17 +1,32 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { Cliente } from '@/models/cliente'
+import type { Producto } from '@/models/producto'
+import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 
-const clientes = ref([])
-const productos = ref([])
+const props = defineProps<{
+  ENDPOINT_API: string
+}>()
+
+const ENDPOINT = props.ENDPOINT_API ?? ''
+var clientes = ref<Cliente[]>([])
+var productos = ref<Producto[]>([])
+
 const idCliente = ref('')
-const montoPago = ref(0)
-const montoCambio = ref(0)
 const productosSeleccionados = ref([{ idProducto: '', cantidad: 0, precio: 0 }])
 
-// Lógica para cargar clientes y productos desde el backend
-// Asumiendo que tienes métodos para cargar clientes y productos desde el backend
+async function getClientes() {
+  await http.get(`${ENDPOINT}/clientes`).then((response) => {
+    clientes.value = response.data
+  })
+}
+
+async function getProductos() {
+  await http.get(`${ENDPOINT}/productos`).then((response) => {
+    productos.value = response.data
+  })
+}
 
 // Función para agregar un nuevo producto al detalle de ventas
 function agregarProducto() {
@@ -42,13 +57,17 @@ async function registrarVenta() {
       detalles: detallesVenta
     }
 
-    await http.post('/ventas', venta)
-    router.push('/ventas') // Redirigir a la lista de ventas después de registrar
+    await http.post(`${ENDPOINT}/ventas`, venta).then(() => router.push('/ventas')) // Redirigir a la lista de ventas después de registrar
   } catch (error) {
     console.error('Error al registrar la venta:', error)
     // Manejo de errores
   }
 }
+
+onMounted(async () => {
+  await getClientes()
+  await getProductos()
+})
 </script>
 
 <template>
@@ -117,31 +136,6 @@ async function registrarVenta() {
           Agregar Producto
         </button>
       </div>
-
-      <div class="form-group">
-        <label for="monto_pago">Monto Pago</label>
-        <input
-          v-model="montoPago"
-          type="number"
-          step="0.01"
-          min="0"
-          class="form-control"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="monto_cambio">Monto Cambio</label>
-        <input
-          v-model="montoCambio"
-          type="number"
-          step="0.01"
-          min="0"
-          class="form-control"
-          required
-        />
-      </div>
-
       <button type="submit" class="btn btn-primary">Registrar Venta</button>
     </form>
   </div>

@@ -15,7 +15,7 @@ export class VentasService {
 
   async create(createVentaDto: CreateVentaDto): Promise<Venta> {
     const existe = await this.ventasRepository.findOneBy({
-      fechaVenta: createVentaDto.fechaVenta,
+      clientes: { id: createVentaDto.idCliente},
     });
 
     if (existe) {
@@ -24,8 +24,6 @@ export class VentasService {
     //id, fecha_venta, hora_venta, total_venta, id_usuario, id_cliente, id_detalle_venta
     return this.ventasRepository.save({
       totalVenta: createVentaDto.totalVenta,
-      fechaVenta: createVentaDto.fechaVenta,
-      horaVenta: createVentaDto.horaVenta,
       usuarios: { id: createVentaDto.idUsuario },
       clientes: { id: createVentaDto.idCliente },
     });
