@@ -17,13 +17,13 @@ const router = createRouter({
       path: '/categorias',
       name: 'categorias',
       component: () => import('../views/CategoriaView.vue'),
-      children: [{ path: '', component: () => import('@/components/categoria/CategoriaList.vue') }]
+      children: [{ path: '', component: () => import('../components/categoria/CategoriaList.vue') }]
     },
     {
       path: '/productos',
       name: 'productos',
       component: () => import('@/views/ProductoView.vue'),
-      children: [{ path: '', component: () => import('@/components/producto/ProductoList.vue') }]
+      children: [{ path: '', component: () => import('../components/producto/ProductoList.vue') }]
     },
     {
       path: '/ventas',

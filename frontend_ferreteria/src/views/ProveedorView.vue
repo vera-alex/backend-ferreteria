@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterView ENDPOINT_API="proveedores"></RouterView>
+  <RouterView ENDPOINT_API="proveedores" class="my-5 pt-5"></RouterView>
 </template>
 
-<style></style>
+<style scoped></style>

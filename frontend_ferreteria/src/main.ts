@@ -1,5 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './assets/main.css'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import './assets/main.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEdit, faPlus, faSave, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -18,4 +18,4 @@ library.add(faPlus, faEdit, faTrash, faSave)
 app.component('font-awesome-icon', FontAwesomeIcon)
 
 app.mount('#app')
-import 'bootstrap/dist/js/bootstrap.min.js'
+// import 'bootstrap/dist/js/bootstrap.min.js'

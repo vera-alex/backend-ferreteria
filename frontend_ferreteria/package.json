@@ -18,9 +18,11 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "ev-emitter": "^2.1.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.3",
+    "wowjs": "^1.1.3"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",

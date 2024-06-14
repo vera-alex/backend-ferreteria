@@ -14,8 +14,8 @@ function onSubmit() {
 
 <template>
   <div class="my-5 pt-5">
-    <h1 class="text-center">Iniciar Sesión</h1>
     <form class="form" @submit.prevent="onSubmit">
+      <h1 class="text-center">Iniciar Sesión</h1>
       <label class="form-label">Usuario:</label>
       <input v-model="usuario" type="text" class="form-input" placeholder="Usuario" autofocus />
 
@@ -37,7 +37,7 @@ function onSubmit() {
   width: 20%;
   min-width: 350px;
   max-width: 100%;
-  background: rgba(19, 35, 47, 0.9);
+  background: rgb(77, 166, 231);
   border-radius: 5px;
   padding: 40px;
   box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);
@@ -58,7 +58,7 @@ function onSubmit() {
 }
 
 .form-submit {
-  background: #09b826;
+  background: #6bc000;
   border: none;
   border-radius: 5rem;
   color: white;

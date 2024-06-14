@@ -49,8 +49,6 @@ async function registrarVenta() {
     }))
 
     const venta = {
-      monto_pago: montoPago.value,
-      monto_cambio: montoCambio.value,
       total: detallesVenta.reduce((acc, curr) => acc + curr.subtotal, 0),
       id_usuario: localStorage.getItem('id_usuario'), // Obtener el ID del usuario desde el localStorage
       id_cliente: idCliente.value,
