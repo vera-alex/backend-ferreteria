@@ -17,19 +17,22 @@ export class CreateProductoDto {
 
   @ApiProperty()
   @IsString({ message: 'El campo marca debe ser de tipo cadena' })
-  @MaxLength(20, { message: 'El campo marca no debe ser mayor a 50 caracteres' })
+  @MaxLength(20, { message: 'El campo marca no debe ser mayor a 20 caracteres' })
   readonly marca: string;
 
-  @IsNotEmpty({ message: 'El campo Unida Medida no debe ser vacío' })
-  @IsString({ message: 'El campo Unida Medida debe ser de tipo cadena' })
-  @MaxLength(10, { message: 'El campo Unida Medida no debe ser mayor a 10 caracteres' })
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo unidadMedida no debe ser vacío' })
+  @IsString({ message: 'El campo unidadMedida debe ser de tipo cadena' })
+  @MaxLength(20, { message: 'El campo unidadMedida no debe ser mayor a 20 caracteres' })
   readonly unidadMedida: string;
 
+  @ApiProperty()
   @IsNotEmpty({ message: 'El campo precio no debe ser vacío' })
   @IsNumber({}, { message: 'El campo precio debe ser de tipo numero' })
   @MaxLength(10, { message: 'El campo precio no debe ser mayor a 10 number' })
   readonly precio: number;
 
+  @ApiProperty()
   @IsNotEmpty({ message: 'El campo stock no debe ser vacío' })
   @IsNumber({}, { message: 'El campo stock debe ser de tipo numeral' })
   @MaxLength(3, { message: 'El campo Unida Medida no debe ser mayor a 3 caracteres' })

@@ -26,7 +26,7 @@ export class Producto {
   @Column('varchar', { length: 20, nullable: true })
   marca: string;
 
-  @Column('varchar', { length: 10, nullable: false })
+  @Column('varchar', { length: 20, nullable: false })
   unidadMedida: string;
 
   @Column('float', { nullable: false })
@@ -48,6 +48,6 @@ export class Producto {
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
 
-  @OneToMany(() => Detallecompra, detallecompra => detallecompra.producto)
+  @OneToMany(() => Detallecompra, detallecompra => detallecompra.productos)
   detallecompra: Detallecompra[];
 }
