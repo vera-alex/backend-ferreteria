@@ -29,13 +29,11 @@ export class CreateProductoDto {
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo precio no debe ser vacío' })
   @IsNumber({}, { message: 'El campo precio debe ser de tipo numero' })
-  @MaxLength(10, { message: 'El campo precio no debe ser mayor a 10 number' })
   readonly precio: number;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo stock no debe ser vacío' })
   @IsNumber({}, { message: 'El campo stock debe ser de tipo numeral' })
-  @MaxLength(3, { message: 'El campo Unida Medida no debe ser mayor a 3 caracteres' })
   readonly stock: number;
 
   @ApiProperty()

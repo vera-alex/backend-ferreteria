@@ -5,7 +5,7 @@ export interface Producto {
   codigo: string
   nombre: string
   marca: string
-  tipoUnidad: string
+  unidadMedida: string
   precio: number
   stock: number
   categoria: Categoria

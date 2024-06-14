@@ -67,7 +67,7 @@ onMounted(() => {
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.marca }}</td>
-            <td>{{ producto.tipoUnidad }}</td>
+            <td>{{ producto.unidadMedida }}</td>
             <td>{{ producto.precio }}</td>
             <td>{{ producto.stock }}</td>
             <td>
@@ -85,4 +85,4 @@ onMounted(() => {
   </div>
 </template>
 
-<style scoped></style> 
+<style scoped></style>
