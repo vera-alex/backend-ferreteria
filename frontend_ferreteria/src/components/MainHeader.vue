@@ -26,7 +26,7 @@ const location = useRoute()
         <div class="col-lg-8 col-sm-8 col-7">
           <ul class="info">
             <li>
-              <a href="#"><i class="fa fa-envelope"></i>todo.en.uno@company.com</a>
+              <a href="#"><i class="fa fa-envelope"></i>todo.uno@gmail.com</a>
             </li>
             <li>
               <a href="#"><i class="fa fa-phone"></i>64-23598</a>
@@ -68,67 +68,73 @@ const location = useRoute()
               <li class="scroll-to-section">
                 <RouterLink to="/" class="nav-link click-scroll">Inicio</RouterLink>
               </li>
-              <li class="scroll-to-section dropdown">
-                <a href="#" class="nav-link">Catálogos</a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <RouterLink to="/categorias" class="nav-link click-scroll"
-                      >Categorías</RouterLink
-                    >
-                  </li>
-                  <li>
-                    <RouterLink to="/productos" class="nav-link click-scroll">Productos</RouterLink>
-                  </li>
-                </ul>
-              </li>
-              <li class="scroll-to-section dropdown">
-                <a href="#" class="nav-link">Compras/Ventas</a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <RouterLink to="/compras" class="nav-link click-scroll">Compras</RouterLink>
-                  </li>
-                  <li>
-                    <RouterLink to="/ventas" class="nav-link click-scroll">Ventas</RouterLink>
-                  </li>
-                </ul>
-              </li>
-              <li class="scroll-to-section dropdown">
-                <a href="#" class="nav-link">Administración</a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <RouterLink to="/clientes" class="nav-link click-scroll">Clientes</RouterLink>
-                  </li>
-                  <li>
-                    <RouterLink to="/proveedores" class="nav-link click-scroll"
-                      >Proveedores</RouterLink
-                    >
-                  </li>
-                  <li>
-                    <RouterLink to="/empleados" class="nav-link click-scroll">Empleados</RouterLink>
-                  </li>
-                  <li>
-                    <RouterLink to="/usuarios" class="nav-link click-scroll">Usuarios</RouterLink>
-                  </li>
-                </ul>
-              </li>
-              <li class="scroll-to-section">
-                <div class="border-first-button">
-                  <RouterLink
-                    v-if="!authStore.token"
-                    to="/login"
-                    class="btn custom-btn d-lg-none ms-auto me-4"
+              <slot v-if="authStore.token">
+                <li class="scroll-to-section dropdown">
+                  <a href="#" class="nav-link">Catálogos</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <RouterLink to="/categorias" class="nav-link click-scroll"
+                        >Categorías</RouterLink
+                      >
+                    </li>
+                    <li>
+                      <RouterLink to="/productos" class="nav-link click-scroll"
+                        >Productos</RouterLink
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li class="scroll-to-section dropdown">
+                  <a href="#" class="nav-link">Compras/Ventas</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <RouterLink to="/compras" class="nav-link click-scroll">Compras</RouterLink>
+                    </li>
+                    <li>
+                      <RouterLink to="/ventas" class="nav-link click-scroll">Ventas</RouterLink>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <RouterLink to="/clientes" class="nav-link click-scroll">Clientes</RouterLink>
+                </li>
+                <li>
+                  <RouterLink to="/proveedores" class="nav-link click-scroll"
+                    >Proveedores</RouterLink
                   >
-                    Iniciar Sesión
-                  </RouterLink>
-                  <a
-                    v-else
-                    @click="authStore.logout()"
-                    class="btn custom-btn d-lg-none ms-auto me-4"
-                  >
-                    Salir
-                  </a>
-                </div>
-              </li>
+                </li>
+                <li v-if="authStore.role == 'Administrador'" class="scroll-to-section dropdown">
+                  <a href="#" class="nav-link">Administración</a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <RouterLink to="/empleados" class="nav-link click-scroll"
+                        >Empleados</RouterLink
+                      >
+                    </li>
+                    <li>
+                      <RouterLink to="/usuarios" class="nav-link click-scroll">Usuarios</RouterLink>
+                    </li>
+                  </ul>
+                </li>
+                <li class="scroll-to-section">
+                  <div class="border-first-button">
+                    <RouterLink
+                      v-if="!authStore.token"
+                      to="/login"
+                      class="btn custom-btn d-lg-none ms-auto me-4"
+                    >
+                      Iniciar Sesión
+                    </RouterLink>
+                    <a
+                      v-else
+                      @click="authStore.logout()"
+                      class="btn custom-btn d-lg-none ms-auto me-4"
+                    >
+                      Salir
+                    </a>
+                  </div>
+                </li>
+              </slot>
             </ul>
             <a class="menu-trigger">
               <span>Menu</span>

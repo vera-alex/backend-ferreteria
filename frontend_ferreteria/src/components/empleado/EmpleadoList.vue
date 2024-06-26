@@ -26,6 +26,14 @@ async function toDelete(id: number) {
   }
 }
 
+function formatoFecha(fecha: string | number | Date) {
+  return new Date(fecha).toLocaleDateString(undefined, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  })
+}
+
 onMounted(() => {
   getEmpleados()
 })
@@ -75,7 +83,7 @@ onMounted(() => {
             <td>{{ empleado.email }}</td>
             <td>{{ empleado.direccion }}</td>
             <td>{{ empleado.celular }}</td>
-            <td>{{ empleado.fechaContrato }}</td>
+            <td>{{ formatoFecha(empleado.fechaContrato) }}</td>
             <td>
               <button class="btn btn-link" @click="toEdit(empleado.id)">
                 <font-awesome-icon icon="fa-solid fa-edit" />

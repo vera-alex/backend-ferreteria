@@ -7,6 +7,8 @@ const useAuthStore = defineStore('auth', {
   state: () => ({
     user: localStorage.getItem('user') || '',
     token: getTokenFromLocalStorage(),
+    role: localStorage.getItem('role') || '',
+    userId: parseInt(localStorage.getItem('userId') || '', 10) || null,
     returnUrl: null || ''
   }),
   getters: {},
@@ -15,9 +17,11 @@ const useAuthStore = defineStore('auth', {
       await http.post('auth/login', { usuario, clave }).then((response) => {
         this.user = response.data.usuario
         this.token = response.data.access_token
+        this.role = response.data.rol
 
         localStorage.setItem('user', this.user || '')
         localStorage.setItem('token', this.token || '')
+        localStorage.setItem('role', this.role || '')
 
         router.push(this.returnUrl || '/')
       })
